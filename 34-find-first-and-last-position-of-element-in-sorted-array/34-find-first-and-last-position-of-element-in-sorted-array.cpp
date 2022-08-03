@@ -8,13 +8,14 @@ public:
         int s = 0;
         int e = nums.size() - 1;
         
+        
         while(s <= e){
             int mid = (s +e)/2;
             
             // cout << mid << endl;
             if(nums[mid] == target){
                 first = mid;
-                break;
+                e = mid - 1;
             }
             
             else if(nums[mid] > target){
@@ -25,28 +26,29 @@ public:
             }
         }
         
-      
+        ans.push_back(first);
+        int second = first;
+        s = 0;
+        e = nums.size() - 1;
         
-        if(first == -1){
-            return {-1, -1};
-        }
-        
-        else{
+        while(s <= e){
+            int mid = (s +e)/2;
             
-            
-            while(first > 0 && nums[first-1] == target){
-                first--;
+            // cout << mid << endl;
+            if(nums[mid] == target){
+                second = mid;
+                s = mid + 1;
             }
             
-            ans.push_back(first);
-            
-            while(first < nums.size()-1 && nums[first+1] == target){
-                first++;
+            else if(nums[mid] > target){
+                e = mid - 1;
             }
-            
-            ans.push_back(first);
-            
+            else{
+                s = mid + 1;
+            }
         }
+        ans.push_back(second);
+        
         
         return ans;
     }
