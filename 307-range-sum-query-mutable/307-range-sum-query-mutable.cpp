@@ -7,6 +7,7 @@ public:
     NumArray(vector<int>& nums) {
         n = nums.size();
         sum = 0;
+        
         arr = nums;
         for(int i = 0; i < n ; i++){
             sum += nums[i];
@@ -16,27 +17,26 @@ public:
     
     void update(int index, int val) {
         
-            sum -= arr[index];
-            arr[index] = val;
+        sum -= arr[index];
+        arr[index] = val;
             
-            sum += arr[index];
+        sum += arr[index];
 
         
     }
     
     int sumRange(int left, int right) {
         
-        int temp = sum;
+        int ans = 0;
         
-        for(int i = 0 ; i < left ; i++){
-            temp -= arr[i];
+        if((right - left) < n /2){
+            ans =  accumulate(arr.begin() + left , arr.begin() + right +1 , 0);
+        }
+        else{
+            ans = sum - accumulate(arr.begin(), arr.begin() + left , 0) - accumulate(arr.begin() + right +1 , arr.end(), 0);
         }
         
-        for(int i = right+ 1; i < n ; i++){
-            temp -= arr[i];
-        }
-        
-        return temp;
+        return ans;
         
     }
 };
