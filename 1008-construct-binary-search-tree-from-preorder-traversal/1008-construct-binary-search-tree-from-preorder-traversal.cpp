@@ -11,47 +11,22 @@
  */
 class Solution {
 public:
-    
-    int getPos(vector<int>& arr, int ele, int n){
-        for(int i = 0 ; i < n ; i++){
-            if(arr[i] == ele){
-                return i;
-            }
-        }
+    TreeNode* build(vector<int>& arr, int &i , int bound){
         
-        return -1;
-    }
-    
-    TreeNode* solve( vector<int>& inorder, vector<int>& preorder, int &index, int s , int e, int n){
-        
-        if(index >= n || s > e){
+        if(i >= arr.size() || arr[i] > bound){
             return NULL;
         }
         
-        int ele = preorder[index++];
-        int pos = getPos(inorder, ele, n);
+        int ele = arr[i];
+        TreeNode* root = new TreeNode(arr[i++]);
+        root -> left = build(arr , i , ele);
+        root -> right = build(arr , i , bound);
         
-        
-        TreeNode* head = new TreeNode(ele);
-        
-        head -> left = solve(inorder, preorder, index , s  , pos -1, n);
-        head -> right = solve(inorder, preorder, index , pos + 1  , e, n);
-        
-        return head;
+        return root;
     }
     
-    
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        vector<int> inorder(preorder.begin(), preorder.end());
-        
-        sort(inorder.begin(), inorder.end());
-          
-        
-        
-        int n = inorder.size();
-        int index = 0;
-        return solve(inorder, preorder , index , 0 , n -1 , n);
-        
-        // return ans;
+        int i = 0;
+        return build(preorder, i , INT_MAX);
     }
 };
