@@ -4,7 +4,7 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>N = 8
 value[] = {1,2,2,1,2,0,2,2}
 <strong>Output: </strong>0 1 1 2 2 2 2 2<strong>
@@ -12,17 +12,17 @@ Explanation: </strong>All the 0s are segregated
 to the left end of the linked list,
 2s to the right end of the list, and
 1s in between.</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>N = 4
 value[] = {2,2,0,1}
 <strong>Output: </strong>0 1 2 2<strong>
 Explanation: </strong>After arranging all the
 0s,1s and 2s in the given format,
-the output will be 0 1 2 2.</span></pre>
+the output will be 0 1 2 2.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Your Task:</strong><br>
 The task is to complete the function <strong>segregate</strong>() which segregates the nodes in the linked list as asked in the problem statement and returns the head of the modified linked list. The <strong>printing </strong>is done <strong>automatically </strong>by the <strong>driver code</strong>.</span></p>
