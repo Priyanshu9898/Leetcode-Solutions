@@ -37,38 +37,54 @@ class Solution
         
         // Add code here
         if(head == NULL){
-            return NULL;
+            return head;
         }
         
-        Node * temp = head;
+        Node* temp = head;
         
-        map<int, int> m;
+        Node* one = new Node(1);
+        Node* zero = new Node(0);
+        Node* two = new Node(2);
         
-        while(temp != NULL){
-            m[temp -> data]++;
-            temp = temp -> next;
-        }
-        
-        temp = head;
+        Node* zeroTail = zero;
+        Node* oneTail = one;
+        Node* twoTail = two;
         
         while(temp != NULL){
             
-            while(m[0]--){
-                temp -> data = 0;
-                temp = temp -> next;
+            Node* newNode = new Node(temp -> data);
+            
+            if(temp -> data == 0){
+                zeroTail -> next = newNode;
+                zeroTail = zeroTail -> next;
             }
-            while(m[1]--){
-                temp -> data = 1;
-                temp = temp -> next;
+            else if(temp -> data == 1){
+                oneTail -> next = newNode;
+                oneTail = oneTail -> next;
             }
-            while(m[2]--){
-                temp -> data = 2;
-                temp = temp -> next;
+            else{
+                twoTail -> next = newNode;
+                twoTail = twoTail -> next;
             }
+            
+            temp = temp -> next;
         }
         
-        return head;
+        if(one -> next == NULL){
+            zeroTail -> next = two -> next;
+        }
+        else{
+            zeroTail -> next = one -> next;
+        }
+      
         
+        oneTail -> next = two -> next;
+        
+        twoTail -> next = NULL;
+        
+        Node* ans = zero -> next;
+        
+        return ans;
     }
 };
 
