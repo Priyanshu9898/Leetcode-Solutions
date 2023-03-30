@@ -10,32 +10,37 @@ class Solution{
     { 
         // Complete the function
         unordered_map<int, int> m;
-        int maxLen = 0;
+        
         int sum = 0;
+        
+        int j = 0;
+
+        
+        int ans = 0;
+        
         for(int i = 0; i < N; i++){
-            
             sum += A[i];
             
             if(sum == K){
-                maxLen = max(maxLen, i +1);
+                ans = max(ans , i +1);
+            
             }
             
             int rem = sum - K;
             
             if(m.find(rem) != m.end()){
-                maxLen = max(maxLen, (i - m[rem]));
+                int len = i - m[rem] ;
+                
+                ans = max(ans , len);
             }
             
             if(m.find(sum) == m.end()){
                 m[sum] = i;
             }
             
-            
         }
         
-        return maxLen;
-        
-        
+        return ans;
     } 
 
 };
