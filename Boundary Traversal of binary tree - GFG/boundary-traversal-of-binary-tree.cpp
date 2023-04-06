@@ -106,7 +106,7 @@ struct Node
 class Solution {
 public:
 
-    void leftTraverse(Node * root, vector <int> &ans){
+    void traverseLeft(Node* root, vector<int> &ans){
         if(root == NULL || (root -> left == NULL && root -> right == NULL)){
             return;
         }
@@ -114,52 +114,58 @@ public:
         ans.push_back(root -> data);
         
         if(root -> left){
-            leftTraverse(root -> left, ans);
+            traverseLeft(root -> left, ans);
         }
         else{
-            leftTraverse(root -> right, ans);
+            traverseLeft(root -> right, ans);
         }
         
     }
     
-    
-    void leafNode(Node* root , vector<int> &ans){
+    void traverseLeaf(Node* root, vector<int> &ans){
         if(root == NULL){
             return;
         }
         
-        if(root -> left == NULL && root -> right == NULL){
+        if((root -> left == NULL && root -> right == NULL)){
             ans.push_back(root -> data);
-            return;
         }
         
         
-        leafNode(root -> left, ans);
-        leafNode(root -> right, ans);
         
+        traverseLeaf(root -> left, ans);
+        
+        
+        traverseLeaf(root -> right, ans);
+        
+    
     }
     
-    void rightTraverse(Node* root , vector<int> &ans){
+    void traverseRight(Node* root, vector<int> &ans){
         if(root == NULL || (root -> left == NULL && root -> right == NULL)){
             return;
         }
         
+        
+        
         if(root -> right){
-            rightTraverse(root -> right, ans);
+            traverseRight(root -> right, ans);
         }
         else{
-            rightTraverse(root -> left, ans);
+            traverseRight(root -> left, ans);
         }
         
         ans.push_back(root -> data);
         
     }
-
+    
+    
 
     vector <int> boundary(Node *root)
     {
         //Your code here
-        vector<int> ans;
+        
+        vector <int> ans;
         
         if(root == NULL){
             return ans;
@@ -167,14 +173,12 @@ public:
         
         ans.push_back(root -> data);
         
-        leftTraverse(root -> left, ans);
+        traverseLeft(root -> left, ans);
         
-        leafNode(root -> left , ans);
+        traverseLeaf(root -> left, ans);
+        traverseLeaf(root -> right, ans);
         
-        leafNode(root -> right, ans);
-        
-        rightTraverse(root -> right, ans);
-        
+        traverseRight(root -> right, ans);
         
         return ans;
         
